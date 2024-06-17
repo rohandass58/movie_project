@@ -1,0 +1,22 @@
+{
+  "movies": [
+    {
+      "id": "2dd8",
+      "title": "Hatthi",
+      "description": "Elephant",
+      "releaseYear": "2023",
+      "genre": "Action",
+      "watched": false,
+      "rating": 4
+    },
+    {
+      "id": "828e",
+      "title": "Django Baby!!",
+      "description": "Jumbo Elephant",
+      "releaseYear": "2022",
+      "genre": "Python",
+      "watched": true,
+      "rating": "2"
+    }
+  ]
+}

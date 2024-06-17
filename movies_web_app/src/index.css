@@ -1,0 +1,166 @@
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+}
+
+h1, h2 {
+  color: #444;
+  text-align: center;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+form label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Movie List Styles */
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.movie-item {
+  background-color: #fff;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  flex: 1 0 21%; /* Adjusts for 4 columns layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.movie-item:hover {
+  transform: translateY(-10px);
+}
+
+.movie-item h2 {
+  margin: 10px 0;
+}
+
+.movie-item p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.movie-item .actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.movie-item .actions button {
+  margin-left: 5px;
+}
+
+/* Movie Details Styles */
+.movie-details {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.movie-details h1 {
+  margin-bottom: 20px;
+}
+
+.movie-details p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.movie-details .rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.movie-details .rating label {
+  margin-right: 10px;
+}
+
+.movie-details .rating input {
+  margin-right: 5px;
+}
+
+.movie-details .actions {
+  margin-top: 20px;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+/* Star Rating Styles */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.star {
+  cursor: pointer;
+  transition: fill 0.2s;
+}

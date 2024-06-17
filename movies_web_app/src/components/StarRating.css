@@ -1,0 +1,16 @@
+.star-rating {
+  display: flex;
+}
+
+.star {
+  fill: #ccc;
+  transition: fill 0.2s;
+}
+
+.star.filled {
+  fill: gold;
+}
+
+.star.empty:hover {
+  fill: #ffd700;
+}
