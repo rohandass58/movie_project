@@ -2,7 +2,7 @@ import React from 'react';
 
 const DeleteMovieButton = ({ movieId }) => {
   const handleDelete = () => {
-    fetch(`http://localhost:4000/movies/${movieId}`, {
+    fetch(`http://localhost:3000/movies/${movieId}`, {
       method: 'DELETE'
     }).then(() => window.location.reload());
   };

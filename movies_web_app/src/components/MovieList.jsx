@@ -13,7 +13,7 @@ const MovieList = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get('http://localhost:4000/api/movies')
+      .get('http://localhost:3000/api/movies')
       .then((response) => {
         setMovies(response.data);
         setIsLoading(false);

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ToggleWatchStatusButton = ({ movie }) => {
   const handleToggle = () => {
-    fetch(`http://localhost:4000/movies/${movie.id}`, {
+    fetch(`http://localhost:3000/movies/${movie.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'

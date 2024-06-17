@@ -9,7 +9,7 @@ const MovieForm = ({ isEdit }) => {
     description: '',
     releaseYear: '',
     genre: '',
-    watched: false,
+    watched: false, // Initialize watched as false
     rating: 0
   });
   const { id } = useParams();
@@ -17,28 +17,32 @@ const MovieForm = ({ isEdit }) => {
 
   useEffect(() => {
     if (isEdit) {
-      axios.get(`http://localhost:4000/movies/${id}`)
-        .then(response => {
+      axios.get(`http://localhost:3000/movies/${id}`)
+       .then(response => {
           setMovie(response.data);
         })
-        .catch(error => console.error("Error fetching movie:", error));
+       .catch(error => console.error("Error fetching movie:", error));
     }
   }, [id, isEdit]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setMovie(prevMovie => ({ ...prevMovie, [name]: value }));
+    const { name, value, checked } = e.target;
+    setMovie(prevMovie => ({
+     ...prevMovie,
+      [name]: checked? true : false, // Handle checkboxes differently
+     ...(name!== 'watched' && { [name]: value }) // For non-checkbox inputs, just update the value
+    }));
   };
 
   const handleRatingChange = (rating) => {
-    setMovie(prevMovie => ({ ...prevMovie, rating }));
+    setMovie(prevMovie => ({...prevMovie, rating }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const baseUrl = 'http://localhost:4000/api/movies';
-    const url = isEdit ? `${baseUrl}/${id}` : baseUrl;
-    const method = isEdit ? 'PUT' : 'POST';
+    const baseUrl = 'http://localhost:3000/api/movies';
+    const url = isEdit? `${baseUrl}/${id}` : baseUrl;
+    const method = isEdit? 'PUT' : 'POST';
 
     axios({
       method,
@@ -48,11 +52,11 @@ const MovieForm = ({ isEdit }) => {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => {
+     .then((response) => {
         console.log('Success:', response.data);
         navigate('/');
       })
-      .catch((error) => {
+     .catch((error) => {
         console.error('There has been a problem with your fetch operation:', error);
       });
   };
@@ -74,6 +78,15 @@ const MovieForm = ({ isEdit }) => {
       <label>
         Genre:
         <input type="text" name="genre" value={movie.genre} onChange={handleChange} required />
+      </label>
+      <label>
+        Watched:
+        <input
+          type="checkbox"
+          name="watched"
+          checked={movie.watched}
+          onChange={handleChange}
+        />
       </label>
       <label>
         Rating:

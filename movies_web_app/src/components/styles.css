@@ -1,4 +1,6 @@
 /* Container for the movie list */
+
+
 .movie-list-container {
   display: flex;
   flex-direction: column;

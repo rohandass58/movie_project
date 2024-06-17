@@ -1,26 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../services/axiosInstance';
-const StarRating = ({ rating }) => {
-  return (
-    <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        const ratingValue = index + 1;
-        return (
-          <svg
-            key={index}
-            className={`star ${ratingValue <= rating? 'filled' : 'empty'}`}
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12.587l3.668 7.568 8.332 1.151-6.064 5.686 1.532 8.298-7.468-4.186-7.468 4.186 1.532-8.298-6.064-5.686 8.332-1.151z" />
-          </svg>
-        );
-      })}
-    </div>
-  );
-};
+import StarRating from './StarRating';
+import './styles.css'; // Import your CSS file
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -41,7 +23,7 @@ const MovieDetails = () => {
   useEffect(() => {
     setIsLoading(true);
     axiosInstance
-     .get(`http://localhost:4000/api/movies/${id}`)
+     .get(`http://localhost:3000/api/movies/${id}`)
      .then((response) => {
         setMovie(response.data);
         setFormData(response.data); // Initialize formData with fetched data
@@ -60,7 +42,7 @@ const MovieDetails = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`http://localhost:4000/api/movies/${id}`);
+      await axiosInstance.delete(`http://localhost:3000/api/movies/${id}`);
       navigate('/');
     } catch (error) {
       setError('There was an error deleting the movie!');
@@ -70,7 +52,7 @@ const MovieDetails = () => {
 
   const handleToggleWatchStatus = async () => {
     try {
-      await axiosInstance.put(`http://localhost:4000/api/movies/${id}`, {
+      await axiosInstance.put(`http://localhost:3000/api/movies/${id}`, {
        ...movie,
         watched:!movie.watched,
       });
@@ -84,7 +66,7 @@ const MovieDetails = () => {
  const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axiosInstance.post('http://localhost:4000/movies', formData);
+    const response = await axiosInstance.post('http://localhost:3000/movies', formData);
     // Handle success
   } catch (error) {
     if (error.response) {
@@ -118,15 +100,16 @@ const MovieDetails = () => {
             <div className="movie-meta">
               <p><strong>Year:</strong> {movie.releaseYear}</p>
               <p><strong>Genre:</strong> {movie.genre}</p>
-              <StarRating rating={movie.rating} />
+                <StarRating rating={movie.rating} />
               <p><strong>Watched:</strong> {movie.watched? 'Yes' : 'No'}</p>
             </div>
             <div className="actions">
-              <button onClick={() => setEditMode(true)}>Edit</button>
               <button onClick={handleDelete} className="delete-button">
                 Delete
               </button>
-              <button onClick={() => navigate(`/edit/${id}`)}>View Details</button>
+              <button onClick={() => navigate(`/edit/${id}`)}>EDIT</button>
+              <button type="button" onClick={() => navigate('/')}>Cancel</button>
+
             </div>
           </div>
         ) : (
