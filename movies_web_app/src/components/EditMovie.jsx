@@ -41,7 +41,7 @@ const EditMovie = () => {
 
   useEffect(() => {
     axios
-    .get(`https://movie-project-frontend.vercel.app/api/movies/${id}`)
+    .get(`https://movie-project-api.vercel.app/api/movies/${id}`)
     .then(response => {
         setMovie(response.data);
       })
@@ -64,7 +64,7 @@ const EditMovie = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://movie-project-frontend.vercel.app/api/movies/${id}`, movie);
+      await axios.put(`https://movie-project-api.vercel.app/api/movies/${id}`, movie);
       navigate('/');
     } catch (error) {
       console.error('There was an error updating the movie!', error);

@@ -27,7 +27,7 @@ const StarRating = ({ rating }) => {
 const MovieItem = ({ movie }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://movie-project-frontend.vercel.app/api/movies/${movie._id}`);
+      await axios.delete(`https://movie-project-api.vercel.app/api/movies/${movie._id}`);
       window.location.reload(); // Refresh the page after deletion
     } catch (error) {
       console.error('There was an error deleting the movie!', error);
@@ -36,7 +36,7 @@ const MovieItem = ({ movie }) => {
 
   const handleToggleWatchStatus = async () => {
     try {
-      await axios.put(`https://movie-project-frontend.vercel.app/api/movies/${movie._id}`, {
+      await axios.put(`https://movie-project-api.vercel.app/api/movies/${movie._id}`, {
         ...movie,
         watched: !movie.watched
       });

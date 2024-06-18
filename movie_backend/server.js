@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-// Use CORS middleware with wildcard origin
+// Use CORS middleware with frontend URL
 app.use(cors({
-  origin: 'https://movie-project-frontend.vercel.app', // Ensure this URL is correct
+  origin: 'https://movie-project-api.vercel.app', // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
   credentials: true
