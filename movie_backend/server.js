@@ -6,7 +6,7 @@ const app = express();
 
 // Use CORS middleware with wildcard origin
 app.use(cors({
-  origin: 'https://movie-project-frontend.vercel.app', // Replace with your frontend URL
+  origin: 'https://movie-project-frontend.vercel.app/', // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
   credentials: true
