@@ -6,7 +6,7 @@ const app = express();
 
 // CORS middleware configuration
 app.use(cors({
-  origin: 'https://movie-project-frontend.vercel.app',
+  origin: 'https://movie-project-frontend.vercel.app', // Replace with your frontend URL
   methods: ['GET', 'PUT', 'POST', 'DELETE'], // Include all HTTP methods you need
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // Include necessary headers
 }));
@@ -100,5 +100,5 @@ app.delete('/api/movies/:id', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on {PORT}`);
-}); 
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
