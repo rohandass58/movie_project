@@ -6,9 +6,9 @@ const app = express();
 
 // CORS middleware configuration
 app.use(cors({
-  origin: '*', // Replace with your frontend URL or '*' to allow all origins
-  methods: ['GET', 'PUT', 'POST'], // Add the HTTP methods you want to allow
-  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // Add headers you want to allow
+  origin: 'https://movie-project-frontend.vercel.app',
+  methods: ['GET', 'PUT', 'POST', 'DELETE'], // Include all HTTP methods you need
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // Include necessary headers
 }));
 
 // Middleware to parse JSON bodies
@@ -16,7 +16,17 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB connection (replace with your cloud MongoDB connection string)
-mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/moviesdb?retryWrites=true&w=majority&appName=Cluster0', {});
+mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/moviesdb?retryWrites=true&w=majority&appName=Cluster0', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+}).then(() => {
+  console.log('MongoDB connected');
+}).catch((err) => {
+  console.error('MongoDB connection error: ', err);
+});
+
 
 // Define the movie schema and model
 const movieSchema = new mongoose.Schema({
@@ -90,5 +100,5 @@ app.delete('/api/movies/:id', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on {PORT}`);
 });
