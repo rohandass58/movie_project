@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 const PORT = process.env.PORT || 3000;
 
 // MongoDB connection (replace with your cloud MongoDB connection string)
-mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {});
+mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/moviesdb?retryWrites=true&w=majority&appName=Cluster0', {});
 
 // Define the movie schema and model
 const movieSchema = new mongoose.Schema({
