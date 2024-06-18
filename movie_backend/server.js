@@ -11,10 +11,11 @@ connectDB();
 
 // CORS middleware configuration
 app.use(cors({
-  origin: 'https://movie-project-frontend.vercel.app',
+  origin: 'https://movie-project-frontend.vercel.app', // Adjust as per your frontend URL
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 }));
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
