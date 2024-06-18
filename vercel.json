@@ -9,12 +9,5 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "outputDirectory": "api",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/$1"
-    }
-  ]
+  }
 }
