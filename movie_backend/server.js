@@ -1,22 +1,21 @@
+require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import cors middleware
+const cors = require('cors');
 const app = express();
 
 // CORS middleware configuration
 app.use(cors({
-  origin: 'https://movie-project-frontend.vercel.app', // Replace with your frontend URL
-  methods: ['GET', 'PUT', 'POST', 'DELETE'], // Include all HTTP methods you need
-  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // Include necessary headers
+  origin: 'https://movie-project-frontend.vercel.app',
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 }));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
-// MongoDB connection (replace with your cloud MongoDB connection string)
-mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/moviesdb?retryWrites=true&w=majority&appName=Cluster0', {
+// MongoDB connection using environment variable
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
@@ -24,8 +23,6 @@ mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mo
 }).catch((err) => {
   console.error('MongoDB connection error: ', err);
 });
-
-
 
 // Define the movie schema and model
 const movieSchema = new mongoose.Schema({
@@ -39,17 +36,15 @@ const movieSchema = new mongoose.Schema({
 const Movie = mongoose.model('Movie', movieSchema);
 
 // Routes
-
 app.get('/', async (req, res) => {
   try {
-    // Assuming the intention was to send a plain text response
     res.send("RADHA RANI KI JAI");
   } catch (error) {
     console.error('An error occurred:', error);
-    // Send a generic error message to the client
     res.status(500).send('Internal Server Error');
   }
 });
+
 app.get('/api/movies', async (req, res) => {
   try {
     const movies = await Movie.find();
@@ -110,5 +105,5 @@ app.delete('/api/movies/:id', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on :${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
