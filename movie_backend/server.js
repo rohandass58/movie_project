@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-// Use CORS middleware with frontend URL
+// Use CORS middleware with specific frontend URL
 app.use(cors({
-  origin: 'https://movie-project-api.vercel.app', // Replace with your frontend URL
+  origin: 'https://movie-project-frontend.vercel.app', // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
   credentials: true
@@ -15,20 +15,6 @@ app.use(cors({
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Serve JavaScript files with correct MIME type
-app.use((req, res, next) => {
-  if (req.path.endsWith('.js')) {
-    res.setHeader('Content-Type', 'application/javascript');
-  }
-  next();
-});
-
-const PORT = process.env.PORT || 3000;
 
 // MongoDB connection (replace with your cloud MongoDB connection string)
 mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/moviesdb?retryWrites=true&w=majority&appName=Cluster0', {});
@@ -40,7 +26,7 @@ const movieSchema = new mongoose.Schema({
   releaseYear: Number,
   genre: String,
   rating: Number,
-  watched: Boolean
+  watched: Boolean,
 });
 const Movie = mongoose.model('Movie', movieSchema);
 
@@ -103,6 +89,7 @@ app.delete('/api/movies/:id', async (req, res) => {
   }
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
