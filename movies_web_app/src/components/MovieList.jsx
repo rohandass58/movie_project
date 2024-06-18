@@ -11,17 +11,19 @@ const MovieList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get('https://movie-project-backend-api.vercel.app/api/movies', { withCredentials: true })
-      .then((response) => {
+    const fetchMovies = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get('https://movie-project-backend-api.vercel.app/api/movies', { withCredentials: true });
         setMovies(response.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         setError('There was an error fetching the movies!');
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+
+    fetchMovies();
   }, []);
 
   const filteredMovies = movies.filter((movie) =>
@@ -47,7 +49,7 @@ const MovieList = () => {
           {filteredMovies.map((movie) => (
             <div key={movie._id} className="movie-card">
               <div className="movie-poster">
-                <img src={`/posters/${movie.poster}`} alt={movie.title} />
+                <img src={`https://movie-project-backend-api.vercel.app/posters/${movie.poster}`} alt={movie.title} />
               </div>
               <div className="movie-details">
                 <h2>{movie.title}</h2>

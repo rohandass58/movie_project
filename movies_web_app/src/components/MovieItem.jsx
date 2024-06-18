@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const StarRating = ({ rating }) => {
@@ -25,9 +25,11 @@ const StarRating = ({ rating }) => {
 };
 
 const MovieItem = ({ movie }) => {
+  const [isWatched, setIsWatched] = useState(movie.watched);
+
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://movie-project-backend-api.vercel.app/${movie._id}`);
+      await axios.delete(`https://movie-project-backend-api.vercel.app/api/movies/${movie._id}`);
       window.location.reload(); // Refresh the page after deletion
     } catch (error) {
       console.error('There was an error deleting the movie!', error);
@@ -36,11 +38,9 @@ const MovieItem = ({ movie }) => {
 
   const handleToggleWatchStatus = async () => {
     try {
-      await axios.put(`https://movie-project-backend-api.vercel.app/${movie._id}`, {
-        ...movie,
-        watched: !movie.watched
-      });
-      window.location.reload(); // Refresh the page after updating
+      const updatedMovie = { ...movie, watched: !isWatched };
+      await axios.put(`https://movie-project-backend-api.vercel.app/api/movies/${movie._id}`, updatedMovie);
+      setIsWatched(!isWatched); // Update the state after updating
     } catch (error) {
       console.error('There was an error updating the movie!', error);
     }
@@ -58,7 +58,7 @@ const MovieItem = ({ movie }) => {
         <Link to={`/edit/${movie._id}`}><button>Edit</button></Link>
         <button onClick={handleDelete}>Delete</button>
         <button onClick={handleToggleWatchStatus}>
-          {movie.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
+          {isWatched ? 'Mark as Unwatched' : 'Mark as Watched'}
         </button>
       </div>
     </div>
