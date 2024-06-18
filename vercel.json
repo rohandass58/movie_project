@@ -1,9 +1,20 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "server.js", "use": "@vercel/node" }
-  ],
+  "builds": [],
   "routes": [
-    { "src": "/(.*)", "dest": "/server.js" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "outputDirectory": "api",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/$1"
+    }
   ]
 }
