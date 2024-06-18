@@ -2,21 +2,18 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const app = express();
 
-// Use CORS middleware with detailed configuration
-// Ensure the origin matches the client's URL exactly, including protocol (http vs https)
+// Use CORS middleware with wildcard origin
 app.use(cors({
-  origin: 'http://localhost:5173', // Change this to your client's origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods explicitly
+  origin: 'movie-project-sand-rho.vercel.app', // or your Vercel deployment URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-  credentials: true // Allow credentials
+  credentials: true
 }));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
@@ -33,8 +30,8 @@ app.use((req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/moviesdb', {});
+// MongoDB connection (replace with your cloud MongoDB connection string)
+mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {});
 
 // Define the movie schema and model
 const movieSchema = new mongoose.Schema({
@@ -45,7 +42,6 @@ const movieSchema = new mongoose.Schema({
   rating: Number,
   watched: Boolean
 });
-
 const Movie = mongoose.model('Movie', movieSchema);
 
 // Routes

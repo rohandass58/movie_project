@@ -86,7 +86,7 @@
   width: 24px;
   height: 24px;
   fill: #ccc;
-  cursor: pointer;
+  cursor: pointer;  
   transition: fill 0.2s;
 }
 
