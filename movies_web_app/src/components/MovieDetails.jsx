@@ -23,7 +23,7 @@ const MovieDetails = () => {
   useEffect(() => {
     setIsLoading(true);
     axiosInstance
-     .get(`https://localhost:3000/${id}`)
+     .get(`https://movie-project-backend-api.vercel.app/api/movies/${id}`)
      .then((response) => {
         setMovie(response.data);
         setFormData(response.data); // Initialize formData with fetched data
@@ -42,7 +42,7 @@ const MovieDetails = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`https://localhost:3000/${id}`);
+      await axiosInstance.delete(`https://movie-project-backend-api.vercel.app/api/movies/${id}`);
       navigate('/');
     } catch (error) {
       setError('There was an error deleting the movie!');
@@ -52,7 +52,7 @@ const MovieDetails = () => {
 
   const handleToggleWatchStatus = async () => {
     try {
-      await axiosInstance.put(`https://localhost:3000/${id}`, {
+      await axiosInstance.put(`https://movie-project-backend-api.vercel.app/api/movies/${id}`, {
        ...movie,
         watched:!movie.watched,
       });

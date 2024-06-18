@@ -42,7 +42,7 @@ const MovieForm = ({ isEdit }) => {
   useEffect(() => {
     if (isEdit) {
       axios
-        .get(`https://localhost:3000/${id}`) // Updated API URL
+        .get(`https://movie-project-backend-api.vercel.app/api/movies/${id}`) // Updated API URL
         .then((response) => {
           setMovie(response.data);
         })
@@ -65,7 +65,7 @@ const MovieForm = ({ isEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const baseUrl = 'https://localhost:3000'; // Updated API URL
+    const baseUrl = 'https://movie-project-backend-api.vercel.app/api/movies'; // Updated API URL
     const url = isEdit ? `${baseUrl}/${id}` : baseUrl;
     const method = isEdit ? 'PUT' : 'POST';
 

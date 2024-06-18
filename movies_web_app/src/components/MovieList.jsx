@@ -13,7 +13,7 @@ const MovieList = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get('https://localhost:3000', { withCredentials: true })
+      .get('https://movie-project-backend-api.vercel.app/api/movies', { withCredentials: true })
       .then((response) => {
         setMovies(response.data);
         setIsLoading(false);
