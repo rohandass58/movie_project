@@ -30,14 +30,14 @@ const MovieDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://movie-project-api.vercel.app/api/movies/${id}`)
+    axios.get(`https://movie-project-frontend.vercel.app/api/movies/${id}`)
       .then(response => setMovie(response.data))
       .catch(error => console.error('There was an error fetching the movie details!', error));
   }, [id]);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://movie-project-api.vercel.app/api/movies/${id}`);
+      await axios.delete(`https://movie-project-frontend.vercel.app/api/movies/${id}`);
       navigate('/');
     } catch (error) {
       console.error('There was an error deleting the movie!', error);
@@ -46,7 +46,7 @@ const MovieDetails = () => {
 
   const handleToggleWatchStatus = async () => {
     try {
-      await axios.put(`https://movie-project-api.vercel.app/api/movies/${id}`, {
+      await axios.put(`https://movie-project-frontend.vercel.app/api/movies/${id}`, {
         ...movie,
         watched: !movie.watched
       });
