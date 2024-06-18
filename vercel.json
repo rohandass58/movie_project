@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "name":"movies-app",
+  "name": "movies-app",
   "builds": [
     {
-      "src": "server.js", 
-      "use": "@vercel/node" 
+      "src": "server.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server.js" 
-    },
+      "dest": "server.js"
+    }
   ]
 }
