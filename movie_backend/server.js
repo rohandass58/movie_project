@@ -40,6 +40,17 @@ const movieSchema = new mongoose.Schema({
 const Movie = mongoose.model('Movie', movieSchema);
 
 // Routes
+
+app.get('/', async (req, res) => {
+  try {
+    // Assuming the intention was to send a plain text response
+    res.send("RADHA RANI KI JAI");
+  } catch (error) {
+    console.error('An error occurred:', error);
+    // Send a generic error message to the client
+    res.status(500).send('Internal Server Error');
+  }
+});
 app.get('/api/movies', async (req, res) => {
   try {
     const movies = await Movie.find();
