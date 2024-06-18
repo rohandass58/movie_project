@@ -6,7 +6,7 @@ const app = express();
 
 // CORS middleware configuration
 app.use(cors({
-  origin: 'https://movie-project-frontend.vercel.app',
+  origin: 'https://movie-project-frontend.vercel.app', // Allow requests from your frontend
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 }));
