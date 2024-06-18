@@ -2,7 +2,7 @@ import React from 'react';
 
 const DeleteMovieButton = ({ movieId }) => {
   const handleDelete = () => {
-    fetch(`http://localhost:3000/movies/${movieId}`, {
+    fetch(`https://movie-project-api.vercel.app/movies/${movieId}`, {
       method: 'DELETE'
     }).then(() => window.location.reload());
   };
