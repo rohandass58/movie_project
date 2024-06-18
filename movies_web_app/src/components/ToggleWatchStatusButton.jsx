@@ -2,7 +2,7 @@ import React from 'react';
 
 const ToggleWatchStatusButton = ({ movie }) => {
   const handleToggle = () => {
-    fetch(`https://movie-project-api.vercel.app/movies/${movie.id}`, {
+    fetch(`https://movie-project-backend-api.vercel.app/movies/${movie.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
