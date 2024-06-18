@@ -2,18 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
-      "use": "@vercel/node"
+      "src": "server.js", // Replace with your entry point file
+      "use": "@vercel/node" // Use the Vercel Node.js runtime
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "server.js"
+      "src": "/api/(.*)", // Match all API routes
+      "dest": "server.js" // Direct requests to your Node.js server
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "/(.*)", // Match all other routes
+      "dest": "/index.html" // Direct requests to your frontend (if applicable)
     }
   ]
 }
