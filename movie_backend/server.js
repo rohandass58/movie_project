@@ -19,13 +19,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 mongoose.connect('mongodb+srv://rohandass58:pryoNn5sDTQtcKS1@cluster0.e1minrn.mongodb.net/moviesdb?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
 }).then(() => {
   console.log('MongoDB connected');
 }).catch((err) => {
   console.error('MongoDB connection error: ', err);
 });
+
 
 
 // Define the movie schema and model
