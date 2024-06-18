@@ -4,12 +4,11 @@ const mongoose = require('mongoose');
 const cors = require('cors'); // Import cors middleware
 const app = express();
 
-// Use CORS middleware with specific frontend URL
+// CORS middleware configuration
 app.use(cors({
-  origin: 'https://movie-project-frontend.vercel.app', // Replace with your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-  credentials: true
+  origin: '*', // Replace with your frontend URL or '*' to allow all origins
+  methods: ['GET', 'PUT', 'POST'], // Add the HTTP methods you want to allow
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // Add headers you want to allow
 }));
 
 // Middleware to parse JSON bodies
